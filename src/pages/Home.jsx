@@ -16,16 +16,10 @@ const Home = ({type}) => {
 
   useEffect(()=>{
     // console.log = console.warn = console.error = () => {};
-    // const fetchVideos = async ()=>{
-    //   const res = await axios.get(`https://mernyoutubeclone2306.herokuapp.com/api/videos/${type}`,{withCredentials:true});
-    //   setVideos(res.data);
-    // }
     const fetchVideos = async ()=>{
-      const res = await fetch(`https://mernyoutubeclone2306.herokuapp.com/api/videos/${type}`);
+      const res = await axios.get(`https://mernyoutubeclone2306.herokuapp.com/api/videos/${type}`,{withCredentials:true});
       setVideos(res.data);
     }
-    fetchVideos();
-  },[type])
 
   return (
     <Container>
