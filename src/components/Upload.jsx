@@ -95,7 +95,7 @@ function Upload({ setOpen }) {
 
   const handleUpload = async(e) =>{
     e.preventDefault();
-    const res = await axios.post("http://localhost:8800/api/videos", {...inputs, tags} , {
+    const res = await axios.post("https://mernyoutubeclone2306.herokuapp.com/api/videos", {...inputs, tags} , {
           headers:{
             accesstoken:localStorage.getItem('accesstoken')
           }

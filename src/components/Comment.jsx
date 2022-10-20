@@ -42,7 +42,7 @@ function Comment({comment}) {
   useEffect(() => {
     const fetchData = async() =>{
       const channelRes = await axios.get(
-        `http://localhost:8800/api/users/find/${comment.userId}`,{
+        `https://mernyoutubeclone2306.herokuapp.com/api/users/find/${comment.userId}`,{
           headers:{
             accesstoken:localStorage.getItem('accesstoken')
           }

@@ -16,7 +16,7 @@ const Myvideos = () => {
   const { currentUser } = useSelector((state) => state.user);
 
   const deleteVideo = async(videoId) =>{
-    const res = await axios.delete(`http://localhost:8800/api/videos/${videoId}`,{
+    const res = await axios.delete(`https://mernyoutubeclone2306.herokuapp.com/api/videos/${videoId}`,{
           headers:{
             accesstoken:localStorage.getItem('accesstoken')
           }
@@ -30,7 +30,7 @@ const Myvideos = () => {
 
   useEffect(() => {
     const fetchVideos = async () => {
-      const res = await axios.get(`http://localhost:8800/api/users/video/${currentUser && currentUser._id}`,{
+      const res = await axios.get(`https://mernyoutubeclone2306.herokuapp.com/api/users/video/${currentUser && currentUser._id}`,{
           headers:{
             accesstoken:localStorage.getItem('accesstoken')
           }
