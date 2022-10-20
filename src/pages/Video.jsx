@@ -128,7 +128,7 @@ function Video() {
   const increase = async () => {
     const res = await axios.put(
       `https://mernyoutubeclone2306.herokuapp.com/api/videos/view/${currentVideo._id}`,
-      {},
+      
       {
           headers:{
             accesstoken:localStorage.getItem('accesstoken')
@@ -164,7 +164,7 @@ function Video() {
   const handleLike = async () => {
     await axios.put(
       `https://mernyoutubeclone2306.herokuapp.com/api/users/like/${currentVideo._id}`,
-      {},
+      
       {
           headers:{
             accesstoken:localStorage.getItem('accesstoken')
@@ -176,7 +176,7 @@ function Video() {
   const handleDisike = async () => {
     await axios.put(
       `https://mernyoutubeclone2306.herokuapp.com/api/users/dislike/${currentVideo._id}`,
-      {},
+      
       {
           headers:{
             accesstoken:localStorage.getItem('accesstoken')
@@ -190,7 +190,7 @@ function Video() {
     currentUser.subscribedUsers.includes(channel._id)
       ? await axios.put(
           `https://mernyoutubeclone2306.herokuapp.com/api/users/unsub/${channel._id}`,
-          {},
+          
           {
           headers:{
             accesstoken:localStorage.getItem('accesstoken')
@@ -199,7 +199,7 @@ function Video() {
         )
       : await axios.put(
           `https://mernyoutubeclone2306.herokuapp.com/api/users/sub/${channel._id}`,
-          {},
+          
           {
           headers:{
             accesstoken:localStorage.getItem('accesstoken')
