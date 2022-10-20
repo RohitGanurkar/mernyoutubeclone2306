@@ -15,11 +15,13 @@ const Home = ({type}) => {
   const [videos, setVideos] = useState([])
 
   useEffect(()=>{
-    // console.log = console.warn = console.error = () => {};
+    console.log = console.warn = console.error = () => {};
     const fetchVideos = async ()=>{
       const res = await axios.get(`https://mernyoutubeclone2306.herokuapp.com/api/videos/${type}`,{withCredentials:true});
       setVideos(res.data);
     }
+    fetchVideos();
+  },[type])
 
   return (
     <Container>
