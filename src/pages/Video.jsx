@@ -126,11 +126,17 @@ function Video() {
   const [channel, setChannel] = useState({});
 
   const increase = async () => {
-    await axios.put(
+    const res = await axios.put(
       `https://mernyoutubeclone2306.herokuapp.com/api/videos/view/${currentVideo._id}`,
       {},
-      { withCredentials: true }
+      {
+          headers:{
+            accesstoken:localStorage.getItem('accesstoken')
+          }
+        }
     );
+    
+    console.log(res)
   };
 
   useEffect(() => {
@@ -159,7 +165,11 @@ function Video() {
     await axios.put(
       `https://mernyoutubeclone2306.herokuapp.com/api/users/like/${currentVideo._id}`,
       {},
-      { withCredentials: true }
+      {
+          headers:{
+            accesstoken:localStorage.getItem('accesstoken')
+          }
+        }
     );
     dispatch(like(currentUser._id));
   };
@@ -167,7 +177,11 @@ function Video() {
     await axios.put(
       `https://mernyoutubeclone2306.herokuapp.com/api/users/dislike/${currentVideo._id}`,
       {},
-      { withCredentials: true }
+      {
+          headers:{
+            accesstoken:localStorage.getItem('accesstoken')
+          }
+        }
     );
     dispatch(dislike(currentUser._id));
   };
@@ -177,12 +191,20 @@ function Video() {
       ? await axios.put(
           `https://mernyoutubeclone2306.herokuapp.com/api/users/unsub/${channel._id}`,
           {},
-          { withCredentials: true }
+          {
+          headers:{
+            accesstoken:localStorage.getItem('accesstoken')
+          }
+        }
         )
       : await axios.put(
           `https://mernyoutubeclone2306.herokuapp.com/api/users/sub/${channel._id}`,
           {},
-          { withCredentials: true }
+          {
+          headers:{
+            accesstoken:localStorage.getItem('accesstoken')
+          }
+        }
         );
     dispatch(subscription(channel._id));
   };

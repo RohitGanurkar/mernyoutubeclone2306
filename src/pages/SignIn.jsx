@@ -1,8 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { loginFailure, loginStart, loginSuccess } from "../redux/userSlice";
+import { setToken } from "../redux/data.js";
 import { auth , provider } from "../firebase"
 import { signInWithPopup } from 'firebase/auth'
 import { useNavigate } from "react-router-dom";
@@ -83,6 +84,7 @@ const SignIn = () => {
   const [password, setPassword] = useState("");
   const [img, setImg] = useState(undefined);
   const [imgPerc, setImagePerc] = useState(0);
+  const { accesstoken } = useSelector((state) => state.data);
 
   const [signupInputs, setSignupInputs] = useState({
     name:"",
@@ -97,33 +99,16 @@ const SignIn = () => {
   const handleLogin = async(e)=>{
     e.preventDefault();
     dispatch(loginStart())
-    // try {
-    //   const res = await axios.post("https://mernyoutubeclone2306.herokuapp.com/api/auth/signin",{name,password},{withCredentials:true});
-    //   dispatch(loginSuccess(res.data))
-    //   toast.success("Login Successfull",{
-    //     toastId: 1215612,
-    //     autoClose: 2000,
-    //   })
-    //   navigate("/")
-    // } catch (error) {
-    //   dispatch(loginFailure())
-    // }
     try {
-      const res = await fetch("https://mernyoutubeclone2306.herokuapp.com/api/auth/signin",{
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        credentials: 'include',
-        body:JSON.stringify({name,password})
-      });
-      const json = await res.json();
-      console.log(json);
-      dispatch(loginSuccess(res.data))
+      const res = await axios.post("https://mernyoutubeclone2306.herokuapp.com/api/auth/signin",{name,password});
+      dispatch(loginSuccess(res.data.data))
+      dispatch(setToken(res.data.accesstoken))
+      localStorage.setItem("accesstoken",res.data.accesstoken)
       toast.success("Login Successfull",{
         toastId: 1215612,
         autoClose: 2000,
       })
+      console.log(res.data)
       navigate("/")
     } catch (error) {
       dispatch(loginFailure())
@@ -138,8 +123,13 @@ const SignIn = () => {
         name:result.user.displayName,
         email:result.user.email,
         img:result.user.photoURL,
-      } , {withCredentials:true}).then((res)=>{
-        dispatch(loginSuccess(res.data))
+      } , {
+          headers:{
+            accesstoken:localStorage.getItem('accesstoken')
+          }
+        }).then((res)=>{
+        dispatch(loginSuccess(res.data.data))
+        localStorage.setItem("accesstoken",res.data.accesstoken)
         toast.success("Login Successfull",{
           toastId: 1215612,
           autoClose: 2000,

@@ -74,7 +74,11 @@ function Card({ type, video, deleteVideo }) {
     }
     const fetchUser = async () => {
       const res = await axios.get(
-        `https://mernyoutubeclone2306.herokuapp.com/api/users/find/${video.userId}`
+        `https://mernyoutubeclone2306.herokuapp.com/api/users/find/${video.userId}`,{
+          headers:{
+            accesstoken:localStorage.getItem('accesstoken')
+          }
+        }
       );
       setUser(res.data);
     };

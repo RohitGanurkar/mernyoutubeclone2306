@@ -89,6 +89,7 @@ const Navbar = () => {
       toastId: 1215612,
       autoClose: 1000,
     })
+    localStorage.removeItem('accesstoken')
     navigate('/signin')
   }
 

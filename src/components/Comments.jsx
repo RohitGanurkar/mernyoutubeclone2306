@@ -43,14 +43,22 @@ function Comments({videoId}) {
   const [commentInput, setSommentInput] = useState("")
 
   const addComment =async() =>{
-    const res = await axios.post("https://mernyoutubeclone2306.herokuapp.com/api/comments", {desc:commentInput,videoId:videoId} , {withCredentials:true})
+    const res = await axios.post("https://mernyoutubeclone2306.herokuapp.com/api/comments", {desc:commentInput,videoId:videoId} , {
+          headers:{
+            accesstoken:localStorage.getItem('accesstoken')
+          }
+        })
     setSommentInput("")
   }
 
   useEffect(() => {
     const fetchComments = async () => {
       try {
-        const res = await axios.get(`https://mernyoutubeclone2306.herokuapp.com/api/comments/${videoId}`,{withCredentials:true});
+        const res = await axios.get(`https://mernyoutubeclone2306.herokuapp.com/api/comments/${videoId}`,{
+          headers:{
+            accesstoken:localStorage.getItem('accesstoken')
+          }
+        });
         setComments(res.data);
       } catch (err) {
         

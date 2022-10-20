@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import Card from "../components/Card";
 
@@ -13,11 +14,18 @@ const Container = styled.div`
 const Home = ({type}) => {
 
   const [videos, setVideos] = useState([])
+  const { accesstoken } = useSelector((state) => state.data);
+
+  const dispatch = useDispatch();
 
   useEffect(()=>{
-    console.log = console.warn = console.error = () => {};
+    // console.log = console.warn = console.error = () => {};
     const fetchVideos = async ()=>{
-      const res = await axios.get(`https://mernyoutubeclone2306.herokuapp.com/api/videos/${type}`,{withCredentials:true});
+      const res = await axios.get(`https://mernyoutubeclone2306.herokuapp.com/api/videos/${type}`,{
+        headers:{
+          accesstoken:localStorage.getItem('accesstoken')
+        }
+      });
       setVideos(res.data);
     }
     fetchVideos();
