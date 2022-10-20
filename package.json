@@ -2,7 +2,7 @@
   "name": "video_app",
   "version": "0.1.0",
   "private": true,
-  "proxy":"https://mernyoutubeclone2306.herokuapp.com/",
+  "proxy":"https://dashing-crepe-e93526.netlify.app/",
   "dependencies": {
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
