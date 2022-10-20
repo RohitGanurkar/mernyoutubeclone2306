@@ -147,10 +147,19 @@ function Video() {
     const fetchData = async () => {
       try {
         const videoRes = await axios.get(
-          `https://mernyoutubeclone2306.herokuapp.com/api/videos/find/${path}`
+          `https://mernyoutubeclone2306.herokuapp.com/api/videos/find/${path}`,{
+            headers:{
+              accesstoken:localStorage.getItem('accesstoken')
+            }
+          }
         );
+        console.log(videoRes);
         const channelRes = await axios.get(
-          `https://mernyoutubeclone2306.herokuapp.com/api/users/find/${videoRes.data.userId}`
+          `https://mernyoutubeclone2306.herokuapp.com/api/users/find/${videoRes.data.userId}`,{
+            headers:{
+              accesstoken:localStorage.getItem('accesstoken')
+            }
+          }
         );
         setChannel(channelRes.data);
         dispatch(fetchSuccess(videoRes.data));
@@ -164,7 +173,6 @@ function Video() {
   const handleLike = async () => {
     await axios.put(
       `https://mernyoutubeclone2306.herokuapp.com/api/users/like/${currentVideo._id}`,
-      
       {
           headers:{
             accesstoken:localStorage.getItem('accesstoken')
