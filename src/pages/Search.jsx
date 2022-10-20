@@ -16,7 +16,7 @@ const Search = () => {
 
   useEffect(() => {
     const fetchVideos = async () => {
-      const res = await axios.get(`https://mernyoutubeclone2306.herokuapp.com/api/videos/search${query}`,{
+      const res = await axios.get(`http://localhost:8800/api/videos/search${query}`,{
           headers:{
             accesstoken:localStorage.getItem('accesstoken')
           }

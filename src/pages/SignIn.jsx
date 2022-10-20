@@ -100,7 +100,7 @@ const SignIn = () => {
     e.preventDefault();
     dispatch(loginStart())
     try {
-      const res = await axios.post("https://mernyoutubeclone2306.herokuapp.com/api/auth/signin",{name,password});
+      const res = await axios.post("http://localhost:8800/api/auth/signin",{name,password});
       dispatch(loginSuccess(res.data.data))
       dispatch(setToken(res.data.accesstoken))
       localStorage.setItem("accesstoken",res.data.accesstoken)
@@ -119,7 +119,7 @@ const SignIn = () => {
     dispatch(loginStart())
     signInWithPopup(auth , provider)
     .then((result)=>{
-      axios.post("https://mernyoutubeclone2306.herokuapp.com/api/auth/google" , {
+      axios.post("http://localhost:8800/api/auth/google" , {
         name:result.user.displayName,
         email:result.user.email,
         img:result.user.photoURL,
@@ -182,7 +182,7 @@ const SignIn = () => {
   const handleSignUp = async(e)=>{
     e.preventDefault();
     try {
-      const res = await axios.post("https://mernyoutubeclone2306.herokuapp.com/api/auth/signup",signupInputs);
+      const res = await axios.post("http://localhost:8800/api/auth/signup",signupInputs);
       if(res.data.success){
         alert("Account is Created")
         setSignupInputs({

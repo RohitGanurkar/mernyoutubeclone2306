@@ -127,7 +127,7 @@ function Video() {
 
   const increase = async () => {
     const res = await axios.put(
-      `https://mernyoutubeclone2306.herokuapp.com/api/videos/view/${currentVideo._id}`,
+      `http://localhost:8800/api/videos/view/${currentVideo._id}`,
       
       {
           headers:{
@@ -147,7 +147,7 @@ function Video() {
     const fetchData = async () => {
       try {
         const videoRes = await axios.get(
-          `https://mernyoutubeclone2306.herokuapp.com/api/videos/find/${path}`,{
+          `http://localhost:8800/api/videos/find/${path}`,{
             headers:{
               accesstoken:localStorage.getItem('accesstoken')
             }
@@ -155,7 +155,7 @@ function Video() {
         );
         console.log(videoRes);
         const channelRes = await axios.get(
-          `https://mernyoutubeclone2306.herokuapp.com/api/users/find/${videoRes.data.userId}`,{
+          `http://localhost:8800/api/users/find/${videoRes.data.userId}`,{
             headers:{
               accesstoken:localStorage.getItem('accesstoken')
             }
@@ -172,7 +172,7 @@ function Video() {
 
   const handleLike = async () => {
     await axios.put(
-      `https://mernyoutubeclone2306.herokuapp.com/api/users/like/${currentVideo._id}`,
+      `http://localhost:8800/api/users/like/${currentVideo._id}`,{},
       {
           headers:{
             accesstoken:localStorage.getItem('accesstoken')
@@ -183,7 +183,7 @@ function Video() {
   };
   const handleDisike = async () => {
     await axios.put(
-      `https://mernyoutubeclone2306.herokuapp.com/api/users/dislike/${currentVideo._id}`,
+      `http://localhost:8800/api/users/dislike/${currentVideo._id}`,{},
       
       {
           headers:{
@@ -197,7 +197,7 @@ function Video() {
   const handleSub = async () => {
     currentUser.subscribedUsers.includes(channel._id)
       ? await axios.put(
-          `https://mernyoutubeclone2306.herokuapp.com/api/users/unsub/${channel._id}`,
+          `http://localhost:8800/api/users/unsub/${channel._id}`,
           
           {
           headers:{
@@ -206,7 +206,7 @@ function Video() {
         }
         )
       : await axios.put(
-          `https://mernyoutubeclone2306.herokuapp.com/api/users/sub/${channel._id}`,
+          `http://localhost:8800/api/users/sub/${channel._id}`,
           
           {
           headers:{
@@ -221,7 +221,7 @@ function Video() {
     <Container>
       <Content>
         <VideoWrapper>
-          <VideoFrame src={"https://firebasestorage.googleapis.com/v0/b/clone-16f2b.appspot.com/o/1666206902476Need%20for%20Speed%E2%84%A2%20Payback%202022-02-24%2014-03-21.mp4?alt=media&token=0ab35e0d-cb6e-4d11-a20f-23fc2ceac9df"} controls />
+          <VideoFrame src={currentVideo.videoUrl} controls />
         </VideoWrapper>
         <Title>{currentVideo.title}</Title>
         <Details>

@@ -11,7 +11,7 @@ function Recommendation({tags}) {
 
     useEffect(()=>{
       const fetchVideos = async ()=>{
-        const res = await axios.get(`https://mernyoutubeclone2306.herokuapp.com/api/videos/tags?tags=${tags}`,{
+        const res = await axios.get(`http://localhost:8800/api/videos/tags?tags=${tags}`,{
           headers:{
             accesstoken:localStorage.getItem('accesstoken')
           }

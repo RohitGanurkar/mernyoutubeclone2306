@@ -74,7 +74,7 @@ function Card({ type, video, deleteVideo }) {
     }
     const fetchUser = async () => {
       const res = await axios.get(
-        `https://mernyoutubeclone2306.herokuapp.com/api/users/find/${video.userId}`,{
+        `http://localhost:8800/api/users/find/${video.userId}`,{
           headers:{
             accesstoken:localStorage.getItem('accesstoken')
           }
