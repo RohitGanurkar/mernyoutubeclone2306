@@ -97,8 +97,27 @@ const SignIn = () => {
   const handleLogin = async(e)=>{
     e.preventDefault();
     dispatch(loginStart())
+    // try {
+    //   const res = await axios.post("https://mernyoutubeclone2306.herokuapp.com/api/auth/signin",{name,password},{withCredentials:true});
+    //   dispatch(loginSuccess(res.data))
+    //   toast.success("Login Successfull",{
+    //     toastId: 1215612,
+    //     autoClose: 2000,
+    //   })
+    //   navigate("/")
+    // } catch (error) {
+    //   dispatch(loginFailure())
+    // }
     try {
-      const res = await axios.post("https://mernyoutubeclone2306.herokuapp.com/api/auth/signin",{name,password},{withCredentials:true});
+      const res = await fetch("https://mernyoutubeclone2306.herokuapp.com/api/auth/signin",{
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body:JSON.stringify({name,password})
+      });
+      const json = await res.json();
+      console.log(json);
       dispatch(loginSuccess(res.data))
       toast.success("Login Successfull",{
         toastId: 1215612,

@@ -16,8 +16,12 @@ const Home = ({type}) => {
 
   useEffect(()=>{
     // console.log = console.warn = console.error = () => {};
+    // const fetchVideos = async ()=>{
+    //   const res = await axios.get(`https://mernyoutubeclone2306.herokuapp.com/api/videos/${type}`,{withCredentials:true});
+    //   setVideos(res.data);
+    // }
     const fetchVideos = async ()=>{
-      const res = await axios.get(`https://mernyoutubeclone2306.herokuapp.com/api/videos/${type}`,{withCredentials:true});
+      const res = await fetch(`https://mernyoutubeclone2306.herokuapp.com/api/videos/${type}`);
       setVideos(res.data);
     }
     fetchVideos();
