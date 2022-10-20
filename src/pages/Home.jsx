@@ -17,7 +17,7 @@ const Home = ({type}) => {
   useEffect(()=>{
     // console.log = console.warn = console.error = () => {};
     const fetchVideos = async ()=>{
-      const res = await axios.get(`http://localhost:8800/api/videos/${type}`,{withCredentials:true});
+      const res = await axios.get(`https://mernyoutubeclone2306.herokuapp.com/api/videos/${type}`,{withCredentials:true});
       setVideos(res.data);
     }
     fetchVideos();

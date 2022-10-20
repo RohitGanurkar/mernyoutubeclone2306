@@ -127,7 +127,7 @@ function Video() {
 
   const increase = async () => {
     await axios.put(
-      `http://localhost:8800/api/videos/view/${currentVideo._id}`,
+      `https://mernyoutubeclone2306.herokuapp.com/api/videos/view/${currentVideo._id}`,
       {},
       { withCredentials: true }
     );
@@ -141,10 +141,10 @@ function Video() {
     const fetchData = async () => {
       try {
         const videoRes = await axios.get(
-          `http://localhost:8800/api/videos/find/${path}`
+          `https://mernyoutubeclone2306.herokuapp.com/api/videos/find/${path}`
         );
         const channelRes = await axios.get(
-          `http://localhost:8800/api/users/find/${videoRes.data.userId}`
+          `https://mernyoutubeclone2306.herokuapp.com/api/users/find/${videoRes.data.userId}`
         );
         setChannel(channelRes.data);
         dispatch(fetchSuccess(videoRes.data));
@@ -157,7 +157,7 @@ function Video() {
 
   const handleLike = async () => {
     await axios.put(
-      `http://localhost:8800/api/users/like/${currentVideo._id}`,
+      `https://mernyoutubeclone2306.herokuapp.com/api/users/like/${currentVideo._id}`,
       {},
       { withCredentials: true }
     );
@@ -165,7 +165,7 @@ function Video() {
   };
   const handleDisike = async () => {
     await axios.put(
-      `http://localhost:8800/api/users/dislike/${currentVideo._id}`,
+      `https://mernyoutubeclone2306.herokuapp.com/api/users/dislike/${currentVideo._id}`,
       {},
       { withCredentials: true }
     );
@@ -175,12 +175,12 @@ function Video() {
   const handleSub = async () => {
     currentUser.subscribedUsers.includes(channel._id)
       ? await axios.put(
-          `http://localhost:8800/api/users/unsub/${channel._id}`,
+          `https://mernyoutubeclone2306.herokuapp.com/api/users/unsub/${channel._id}`,
           {},
           { withCredentials: true }
         )
       : await axios.put(
-          `http://localhost:8800/api/users/sub/${channel._id}`,
+          `https://mernyoutubeclone2306.herokuapp.com/api/users/sub/${channel._id}`,
           {},
           { withCredentials: true }
         );

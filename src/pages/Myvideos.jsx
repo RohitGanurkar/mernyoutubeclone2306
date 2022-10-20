@@ -16,7 +16,7 @@ const Myvideos = () => {
   const { currentUser } = useSelector((state) => state.user);
 
   const deleteVideo = async(videoId) =>{
-    const res = await axios.delete(`http://localhost:8800/api/videos/${videoId}`,{withCredentials:true});
+    const res = await axios.delete(`https://mernyoutubeclone2306.herokuapp.com/api/videos/${videoId}`,{withCredentials:true});
     console.log(res)
     toast.success("Deleted Successfull",{
       toastId: 1215612,
@@ -26,7 +26,7 @@ const Myvideos = () => {
 
   useEffect(() => {
     const fetchVideos = async () => {
-      const res = await axios.get(`http://localhost:8800/api/users/video/${currentUser && currentUser._id}`,{withCredentials:true});
+      const res = await axios.get(`https://mernyoutubeclone2306.herokuapp.com/api/users/video/${currentUser && currentUser._id}`,{withCredentials:true});
       setVideos(res.data);
     };
     fetchVideos();
