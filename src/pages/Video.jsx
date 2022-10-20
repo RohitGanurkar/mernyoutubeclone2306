@@ -221,7 +221,7 @@ function Video() {
     <Container>
       <Content>
         <VideoWrapper>
-          <VideoFrame src={currentVideo.videoUrl} controls />
+          <VideoFrame src={"https://firebasestorage.googleapis.com/v0/b/clone-16f2b.appspot.com/o/1666206902476Need%20for%20Speed%E2%84%A2%20Payback%202022-02-24%2014-03-21.mp4?alt=media&token=0ab35e0d-cb6e-4d11-a20f-23fc2ceac9df"} controls />
         </VideoWrapper>
         <Title>{currentVideo.title}</Title>
         <Details>
