@@ -114,6 +114,7 @@ const SignIn = () => {
         headers: {
           'Content-Type': 'application/json',
         },
+        credentials: 'include',
         body:JSON.stringify({name,password})
       });
       const json = await res.json();
